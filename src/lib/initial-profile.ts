@@ -1,6 +1,5 @@
 import { currentUser, auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/db";
-import { redirect } from "next/navigation";
 
 export const initialProfile = async () => {
     const user = await currentUser();
@@ -30,3 +29,4 @@ export const initialProfile = async () => {
 
     return newProfile;
 }
+

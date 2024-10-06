@@ -1,3 +1,4 @@
+import InitialModal from '@/components/modals/initial-modal';
 import prisma from '@/lib/db';
 import { initialProfile } from '@/lib/initial-profile';
 import { redirect } from 'next/navigation'
@@ -22,7 +23,9 @@ async function page() {
     }
 
     return (
-        <div>Create a server</div>
+        <div>
+            <InitialModal />
+        </div>
     );
 }
 
