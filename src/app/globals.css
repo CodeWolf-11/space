@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import "~@uploadthing/react/styles.css";
+
 html,
 body,
 :root {
