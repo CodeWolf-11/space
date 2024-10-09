@@ -50,7 +50,7 @@ function EditServerModal() {
     const isModalOpen = isOpen && type === "edit";
     const { server } = data;
     const handleClose = () => {
-        form.reset();
+
         onClose()
     }
 
