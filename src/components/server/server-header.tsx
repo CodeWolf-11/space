@@ -61,7 +61,7 @@ function ServerHeader({ server, role }: ServerHeaderProps) {
                 }
                 {
                     isModerator && (
-                        <DropdownMenuItem className='px-3 py-2 text-sm cursor-pointer flex items-center'>
+                        <DropdownMenuItem onClick={() => onOpen("createChannel", { server })} className='px-3 py-2 text-sm cursor-pointer flex items-center'>
                             Create Channel
                             <PlusCircle className='h-4 w-4 ml-auto' />
                         </DropdownMenuItem>
@@ -78,7 +78,7 @@ function ServerHeader({ server, role }: ServerHeaderProps) {
 
                 {
                     isAdmin && (
-                        <DropdownMenuItem className='px-3 text-rose-500 py-2 text-sm cursor-pointer flex items-center'>
+                        <DropdownMenuItem onClick={() => onOpen("delete", { server })} className='px-3 text-rose-500 py-2 text-sm cursor-pointer flex items-center'>
                             Delete Server
                             <Trash className='h-4 w-4 ml-auto' />
                         </DropdownMenuItem>
@@ -88,7 +88,7 @@ function ServerHeader({ server, role }: ServerHeaderProps) {
 
                 {
                     !isAdmin && (
-                        <DropdownMenuItem className='px-3 text-rose-500 py-2 text-sm cursor-pointer flex items-center'>
+                        <DropdownMenuItem onClick={() => onOpen("leave", { server })} className='px-3 text-rose-500 py-2 text-sm cursor-pointer flex items-center'>
                             Leave Server
                             <LogOut className='h-4 w-4 ml-auto' />
                         </DropdownMenuItem>
