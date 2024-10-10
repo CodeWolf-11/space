@@ -1,7 +1,7 @@
 "use client";
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -49,7 +49,7 @@ const formSchema = z.object({
 
 function CreateChannelModal() {
 
-    const { isOpen, onClose, type } = useModal();
+    const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
     const params = useParams();
 
@@ -64,7 +64,7 @@ function CreateChannelModal() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            type: ChannelType.TEXT
+            type: data.channelType || ChannelType.TEXT
         }
     });
 
@@ -90,6 +90,13 @@ function CreateChannelModal() {
         }
     }
 
+    useEffect(() => {
+        if (data.channelType) {
+            form.setValue("type", data.channelType);
+        } else {
+            form.setValue("type", ChannelType.TEXT);
+        }
+    }, [data.channelType, form]);
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>

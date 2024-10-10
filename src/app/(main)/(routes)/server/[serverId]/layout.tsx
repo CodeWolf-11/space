@@ -34,7 +34,6 @@ async function ServerLayout({ children, params }: { children: React.ReactNode, p
                 <ServerSideBar serverId={params.serverId} />
             </div>
             <main className='h-full md:pl-60'>
-
                 {children}
             </main>
         </div>
