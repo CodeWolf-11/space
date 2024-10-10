@@ -33,7 +33,6 @@ function DeleteServerModal() {
             onClose();
             router.refresh();
             router.push("/");
-            window.location.reload();
         } catch (error) {
 
         } finally {
