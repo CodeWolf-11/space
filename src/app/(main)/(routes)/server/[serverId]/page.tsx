@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 interface ServerIdPageProps {
     params: {
-        serverId: string
+        serverId: string,
     }
 };
 
