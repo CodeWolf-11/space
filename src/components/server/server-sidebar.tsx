@@ -144,8 +144,8 @@ async function ServerSideBar({ serverId }: ServerSideBarProps) {
                             {
 
                                 textChannels?.map((channel) => (
-                                    <div className='space-y-[2px]'>
-                                        <ServerChannel role={role} key={channel.id} server={server} channel={channel} />
+                                    <div key={channel.id} className='space-y-[2px]'>
+                                        <ServerChannel role={role} server={server} channel={channel} />
                                     </div>
 
                                 ))
@@ -160,8 +160,8 @@ async function ServerSideBar({ serverId }: ServerSideBarProps) {
                             {
                                 audioChannels?.map((channel) => (
 
-                                    <div className='space-y-[2px]'>
-                                        <ServerChannel role={role} key={channel.id} server={server} channel={channel} />
+                                    <div key={channel.id} className='space-y-[2px]'>
+                                        <ServerChannel role={role} server={server} channel={channel} />
                                     </div>
 
                                 ))
@@ -175,8 +175,8 @@ async function ServerSideBar({ serverId }: ServerSideBarProps) {
                             <ServerSection sectionType='channels' channelType={ChannelType.VIDEO} role={role} label='Video Channels' />
                             {
                                 videoChannels?.map((channel) => (
-                                    <div className='space-y-[2px]'>
-                                        <ServerChannel role={role} key={channel.id} server={server} channel={channel} />
+                                    <div key={channel.id} className='space-y-[2px]'>
+                                        <ServerChannel role={role} server={server} channel={channel} />
                                     </div>
                                 ))
                             }
@@ -189,8 +189,8 @@ async function ServerSideBar({ serverId }: ServerSideBarProps) {
                             <ServerSection sectionType='members' role={role} label='Members' server={server} />
                             {
                                 members?.map((member) => (
-                                    <div className='space-y-[2px]'>
-                                        <ServerMember key={member.id} member={member} server={server} />
+                                    <div key={member.id} className='space-y-[2px]'>
+                                        <ServerMember member={member} server={server} />
                                     </div>
                                 ))
                             }
