@@ -55,6 +55,8 @@ function EditChannelModal() {
 
     const isModalOpen = isOpen && type === "editChannel";
 
+    const { server, channel } = data;
+
     const handleClose = () => {
         form.reset();
         onClose()
@@ -64,7 +66,7 @@ function EditChannelModal() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            type: data.channelType || ChannelType.TEXT
+            type: channel?.type || ChannelType.TEXT
         }
     });
 
@@ -74,13 +76,12 @@ function EditChannelModal() {
         try {
 
             const url = qs.stringifyUrl({
-                url: "/api/channels",
+                url: `/api/channels/${channel?.id}`,
                 query: {
-                    serverId: params?.serverId
+                    serverId: server?.id
                 }
             })
-            await axios.post(url, values);
-
+            await axios.patch(url, values);
             form.reset();
             router.refresh();
             onClose();
@@ -91,19 +92,18 @@ function EditChannelModal() {
     }
 
     useEffect(() => {
-        if (data.channelType) {
-            form.setValue("type", data.channelType);
-        } else {
-            form.setValue("type", ChannelType.TEXT);
+        if (channel) {
+            form.setValue("name", channel.name);
+            form.setValue("type", channel.type);
         }
-    }, [data.channelType, form]);
+    }, [form, channel]);
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
-                        Create Channel
+                        Edit Channel
                     </DialogTitle>
 
                 </DialogHeader>
