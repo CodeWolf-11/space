@@ -4,7 +4,6 @@ export const getOrCreateConversation = async (memberOneId: string, memberTwoId: 
 
     let conversation = await findConversation(memberOneId, memberTwoId) || await findConversation(memberTwoId, memberOneId);
 
-
     if (!conversation) {
         //@ts-ignore
         conversation = await createNewConersation(memberOneId, memberTwoId);

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { SocketProvider } from "@/components/providers/socket-provider";
 
 const openSans = Open_Sans({ subsets: ["latin"] })
 
@@ -36,9 +37,12 @@ export default function RootLayout({
             enableSystem={true}
             storageKey="space-theme"
           >
-            <ModalProvider />
-            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            {children}
+
+            <SocketProvider>
+              <ModalProvider />
+              <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+              {children}
+            </SocketProvider>
 
           </ThemeProvider>
 

@@ -1,7 +1,7 @@
 "use client";
 import { Member, MemberRole, Profile } from '@prisma/client'
 import React from 'react'
-import { ServerWithMembersWithProfiles } from '../../../types'
+import { ServerWithMembersWithProfiles } from '../../types'
 import { ShieldAlert, ShieldCheck } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'

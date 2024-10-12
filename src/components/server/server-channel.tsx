@@ -3,7 +3,7 @@
 import { ChannelType, MemberRole } from '@prisma/client';
 import { Channel } from '@prisma/client';
 import React from 'react'
-import { ServerWithMembersWithProfiles } from '../../../types';
+import { ServerWithMembersWithProfiles } from '../../types';
 import { Edit, Hash, Mic, Trash, Video, Lock } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
