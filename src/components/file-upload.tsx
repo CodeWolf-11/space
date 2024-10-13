@@ -4,9 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { UploadDropzone } from '@/lib/uploadthing';
 import Image from 'next/image';
 import { FileIcon, X } from 'lucide-react';
-import Link from 'next/link';
 import axios from 'axios';
-import { setDefaultAutoSelectFamily } from 'net';
 
 interface FileUploadProps {
     onChange: (url?: string) => void;
