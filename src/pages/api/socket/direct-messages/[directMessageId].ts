@@ -12,60 +12,63 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
     try {
 
         const profile = await currentProfilePages(req);
-        const { messageId, serverId, channelId } = req.query;
+        const { directMessageId, conversationId } = req.query;
         const { content } = req.body;
 
         if (!profile) {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
-        if (!channelId) {
-            return res.status(400).json({ error: "Channel Id is missing" });
+        if (!conversationId) {
+            return res.status(400).json({ error: "conversationId is missing" });
         }
 
-        if (!serverId) {
-            return res.status(400).json({ error: "server Id is missing" });
-        }
 
-        const server = await prisma.server.findFirst({
+        const conversation = await prisma.conversation.findFirst({
             where: {
-                id: serverId as string,
-                Member: {
-                    some: {
-                        profileId: profile.id
+                id: conversationId as string,
+                OR: [
+                    {
+                        memberOne: {
+                            profileId: profile.id
+                        }
+                    },
+                    {
+                        memberTwo: {
+                            profileId: profile.id
+                        }
                     }
-                }
+                ]
             },
             include: {
-                Member: true
+                memberOne: {
+                    include: {
+                        profile: true
+                    }
+                },
+                memberTwo: {
+                    include: {
+                        profile: true
+                    }
+                }
             }
         });
 
-        if (!server) {
-            return res.status(404).json({ "error": "Server not found" });
+
+        if (!conversation) {
+            return res.status(404).json({ error: "conversation not found" });
         }
 
-        const channel = await prisma.channel.findFirst({
-            where: {
-                id: channelId as string,
-                serverId: serverId as string
-            },
-        });
-
-        if (!channel) {
-            return res.status(404).json({ "error": "Channel not found" });
-        }
-
-        const member = server.Member.find((member) => member.profileId === profile.id);
+        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo;
 
         if (!member) {
             return res.status(404).json({ "error": "member not found" });
         }
 
-        let message = await prisma.message.findFirst({
+        let message = await prisma.directMessage.findFirst({
             where: {
-                id: messageId as string,
-                channelId: channelId as string,
+                id: directMessageId as string,
+                conversationId: conversationId as string,
             },
             include: {
                 member: {
@@ -91,9 +94,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         }
 
         if (req.method === "DELETE") {
-            message = await prisma.message.update({
+            message = await prisma.directMessage.update({
                 where: {
-                    id: messageId as string
+                    id: directMessageId as string
                 },
                 data: {
                     fileUrl: null,
@@ -116,9 +119,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
                 return res.status(401).json({ error: "Unauhtorized" });
             }
 
-            message = await prisma.message.update({
+            message = await prisma.directMessage.update({
                 where: {
-                    id: messageId as string
+                    id: directMessageId as string
                 },
                 data: {
                     content
@@ -133,7 +136,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             });
         }
 
-        const updateKey = `chat:${channelId}:messages:update`;
+        const updateKey = `chat:${conversationId}:messages:update`;
 
         res?.socket?.server?.io?.emit(updateKey, message);
 
