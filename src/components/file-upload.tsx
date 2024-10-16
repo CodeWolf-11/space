@@ -17,8 +17,8 @@ function FileUpload({ onChange, endpoint, value }: FileUploadProps) {
     const [fileType, setFileType] = useState<string>("");
     const [isMounted, setIsMounted] = useState<boolean>(false);
 
-    console.log(fileType);
-    console.log(value);
+    console.log("fileTyep", fileType);
+    console.log("fileType", value);
     useEffect(() => {
 
         if (value !== "") {
