@@ -5,7 +5,6 @@ import { UploadDropzone } from '@/lib/uploadthing';
 import Image from 'next/image';
 import { FileIcon, X } from 'lucide-react';
 import axios from 'axios';
-import { cookies } from 'next/headers';
 
 interface FileUploadProps {
     onChange: (url?: string) => void;
@@ -14,8 +13,6 @@ interface FileUploadProps {
 }
 
 function FileUpload({ onChange, endpoint, value }: FileUploadProps) {
-
-    cookies();
 
     const [fileType, setFileType] = useState<string>("");
     const [isMounted, setIsMounted] = useState<boolean>(false);
