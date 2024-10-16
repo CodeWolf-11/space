@@ -14,7 +14,9 @@ const nextConfig = {
             }
         ]
     },
-    reactStrictMode: false
+
+    ssg: false // means build time the pages wont generate static html, only runtime with ISR
+
 };
 
 export default nextConfig;

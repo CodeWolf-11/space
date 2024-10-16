@@ -29,6 +29,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FileUpload from '@/components/file-upload';
+import { cookies } from 'next/headers';
 
 
 
@@ -42,7 +43,7 @@ const formSchema = z.object({
 });
 
 function InitialModal() {
-
+    cookies();
     //for hydration erros
     const [isMounted, setIsMounted] = useState<boolean>(false);
 
