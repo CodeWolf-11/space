@@ -2,7 +2,6 @@ import { currentProfile } from '@/lib/current-profile'
 import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import React from 'react'
 
 interface InviteCodePageProps {
     params: {

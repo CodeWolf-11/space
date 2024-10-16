@@ -48,6 +48,8 @@ function DeleteChannelModal() {
 
         } catch (error) {
 
+            console.log(error);
+
         } finally {
             setIsLoading(false);
         }

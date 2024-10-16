@@ -51,7 +51,6 @@ function EditChannelModal() {
 
     const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
-    const params = useParams();
 
     const isModalOpen = isOpen && type === "editChannel";
 
@@ -87,7 +86,7 @@ function EditChannelModal() {
             onClose();
 
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 

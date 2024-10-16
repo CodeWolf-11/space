@@ -23,7 +23,7 @@ import {
     DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
 
-import { Check, Gavel, Loader2, MoreVertical, Router, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from 'lucide-react';
+import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from 'lucide-react';
 import { useModal } from '@/hooks/use-modal-store';
 import { ServerWithMembersWithProfiles } from '../../types';
 import { ScrollArea } from '@/components/ui/scroll-area';

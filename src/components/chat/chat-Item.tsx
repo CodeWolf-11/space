@@ -4,7 +4,7 @@ import { Member, MemberRole, Profile } from '@prisma/client'
 import React, { useEffect, useState } from 'react'
 import UserAvatar from '../user-avatar'
 import ActionToolTip from '../action-tooltip'
-import { Edit, FileIcon, FileType, ShieldAlert, ShieldCheck, Trash } from 'lucide-react'
+import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from 'lucide-react'
 import Image from "next/image";
 import axios from 'axios'
 import * as z from "zod";
