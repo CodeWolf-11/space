@@ -75,6 +75,7 @@ function FileUpload({ onChange, endpoint, value }: FileUploadProps) {
             endpoint={endpoint}
             onClientUploadComplete={(res) => {
                 console.log(res);
+                console.log("inside on client upload complete")
                 onChange(res?.[0].url)
             }}
             onUploadError={(error: Error) => {
